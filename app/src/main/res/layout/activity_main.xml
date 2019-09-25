@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.test.testingproject.auth.AuthViewModel" />
+            type="com.test.testingproject.ui.auth.AuthViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

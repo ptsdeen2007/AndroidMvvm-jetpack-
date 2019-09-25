@@ -1,16 +1,16 @@
-package com.test.testingproject.home
+package com.test.testingproject.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.test.testingproject.R
-import com.test.testingproject.auth.AuthListener
-import com.test.testingproject.auth.AuthViewModel
+import com.test.testingproject.ui.auth.AuthListener
 import com.test.testingproject.databinding.ActivityMainBinding
+import com.test.testingproject.ui.auth.AuthViewModel
 import com.test.testingproject.util.toast
 
 class MainActivity : AppCompatActivity(),AuthListener {
@@ -27,8 +27,10 @@ class MainActivity : AppCompatActivity(),AuthListener {
         toast("Started")
     }
 
-    override fun onSuccess() {
-        toast("Success")
+    override fun onSuccess(response: LiveData<String>) {
+        response.observe(this, Observer {
+            toast(it)
+        })
     }
 
     override fun onFailiure(message: String) {
